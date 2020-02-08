@@ -6,21 +6,21 @@ layui.use(['table','layer'], function(){
         elem: '#test'
         ,url:'http://localhost:3001/addresses'
         ,cols: [[
-            {field:'addressId', title: 'AddressID'}
-            ,{field:'streetName', title: 'Street Name'}
-            ,{field:'streetAddress', title: 'Street Address'}
-            ,{field:'city', title: 'City'}
-            ,{field:'country', title: 'Country'}
-            ,{field:'zipCode', title: 'ZipCode'}
-            ,{field:'latitude', title: 'Latitude'}
-            ,{field:'longitude', title: 'Longitude'}
-            ,{field:'created', title: 'Created'}
-            ,{field:'updated', title: 'Updated'}
-            ,{fixed: 'right', width: 200, title: 'CRUD', align:'center', toolbar: '#barDemo'}        
+            {field:'addressId', title: '地址ID'}
+            ,{field:'streetName', title: '街道名称'}
+            ,{field:'streetAddress', title: '街道地址'}
+            ,{field:'city', title: '城市'}
+            ,{field:'country', title: '国家'}
+            ,{field:'zipCode', title: '邮编'}
+            ,{field:'latitude', title: '纬度'}
+            ,{field:'longitude', title: '经度'}
+            ,{field:'created', title: '创建日期'}
+            ,{field:'updated', title: '编辑日期'}
+            ,{fixed: 'right', width: 200, title: '操作', align:'center', toolbar: '#barDemo'}        
 ]]
         ,toolbar: '#barDemo2'
         ,page: true
-        ,title: "AddressCRUD"
+        ,title: "地址CRUD"
     });
 //监听工具条 
 table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
@@ -33,18 +33,18 @@ table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test
             btn: [],
             maxWidth: 750,
             shade: 0,
-            title: "Address",
+            title: "地址",
             content: `<div>
-                             <p><span>AddressID:</span> <span>${data["addressId"]}</span></p>
-                             <p><span>Street Name:</span> <span>${data["streetName"]}</span></p>
-                             <p><span>Street Address:</span> <span>${data["streetAddress"]}</span></p>
-                             <p><span>City:</span> <span>${data["city"]}</span></p>
-                             <p><span>Country:</span> <span>${data["country"]}</span></p>
-                             <p><span>ZipCode:</span> <span>${data["zipCode"]}</span></p>
-                             <p><span>Latitude:</span> <span>${data["latitude"]}</span></p>
-                             <p><span>Longitude:</span> <span>${data["longitude"]}</span></p>
-                             <p><span>Created:</span> <span>${data["created"]}</span></p>
-                             <p><span>Updated:</span> <span>${data["updated"]}</span></p>                            
+                             <p><span>地址ID:</span> <span>${data["addressId"]}</span></p>
+                             <p><span>街道名称:</span> <span>${data["streetName"]}</span></p>
+                             <p><span>街道地址:</span> <span>${data["streetAddress"]}</span></p>
+                             <p><span>城市:</span> <span>${data["city"]}</span></p>
+                             <p><span>国家:</span> <span>${data["country"]}</span></p>
+                             <p><span>邮编:</span> <span>${data["zipCode"]}</span></p>
+                             <p><span>纬度:</span> <span>${data["latitude"]}</span></p>
+                             <p><span>经度:</span> <span>${data["longitude"]}</span></p>
+                             <p><span>创建日期:</span> <span>${data["created"]}</span></p>
+                             <p><span>编辑日期:</span> <span>${data["updated"]}</span></p>                            
 </div>`
         });
         //layer.msg(JSON.stringify(data));
@@ -54,8 +54,8 @@ table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test
         layer.open({
             btn: [],
             shade: 0,
-            title: "Delete address",
-            content: `<div><div class="mb-15 tc">Confirm delete address?</div><div class="tr"><button id="buttonDelete" type="submit" class="layui-btn layui-btn-danger">Delete</button></div></div>`
+            title: "删除地址",
+            content: `<div><div class="mb-15 tc">确定删除地址?</div><div class="tr"><button id="buttonDelete" type="submit" class="layui-btn layui-btn-danger">删除</button></div></div>`
         });
         document.getElementById("buttonDelete").addEventListener("click", function (e) {
             deleteAddressPost();
@@ -65,51 +65,51 @@ table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test
         layer.open({
             btn: [],
             shade: 0,
-            title: "Edit address",
+            title: "编辑地址",
             content: `<form class="layui-form layui-form-pane" action="">
                               <div class="layui-form-item">
-                    <label class="layui-form-label">Street Name</label>
+                    <label class="layui-form-label">街道名称</label>
                     <div class="layui-input-inline">
                       <input type="text" name="streetName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" required value="${data["streetName"]}">
                     </div>
                   </div>
                   <div class="layui-form-item">
-                    <label class="layui-form-label">Street Address</label>
+                    <label class="layui-form-label">街道地址</label>
                     <div class="layui-input-inline">
                       <input type="text" name="streetAddress" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"  required value="${data["streetAddress"]}">
                     </div>
                   </div>
                      <div class="layui-form-item">
-                    <label class="layui-form-label">City</label>
+                    <label class="layui-form-label">城市</label>
                     <div class="layui-input-inline">
                       <input type="text" name="city" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" required value="${data["city"]}">
                     </div>
                   </div>
                   <div class="layui-form-item">
-                    <label class="layui-form-label">Country</label>
+                    <label class="layui-form-label">国家</label>
                     <div class="layui-input-inline">
                       <input type="text" name="country" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"  required value="${data["country"]}">
                     </div>
                   </div>
                      <div class="layui-form-item">
-                    <label class="layui-form-label">ZipCode</label>
+                    <label class="layui-form-label">邮编</label>
                     <div class="layui-input-inline">
                       <input type="text" name="zipCode" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" required value="${data["zipCode"]}">
                     </div>
                   </div>
                   <div class="layui-form-item">
-                    <label class="layui-form-label">Latitude</label>
+                    <label class="layui-form-label">纬度</label>
                     <div class="layui-input-inline">
                       <input type="text" name="latitude" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" required value="${data["latitude"]}">
                     </div>
                   </div>
   <div class="layui-form-item">
-                    <label class="layui-form-label">Longitude</label>
+                    <label class="layui-form-label">经度</label>
                     <div class="layui-input-inline">
                       <input type="text" name="longitude" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" required value="${data["longitude"]}">
                     </div>
                   </div>
- <button type="submit" class="layui-btn layui-btn-normal fr">Save</button>
+ <button type="submit" class="layui-btn layui-btn-normal fr">保存</button>
 </form>`
         });
         document.getElementsByTagName("form")[0].addEventListener("submit", function (e) {
@@ -128,51 +128,51 @@ table.on('toolbar(test)', function(obj){
          layer.open({
             btn: [],
             shade: 0,
-            title: "Create address",
+            title: "新建地址",
             content: `<form class="layui-form layui-form-pane" action="">
                    <div class="layui-form-item">
-                    <label class="layui-form-label">Street Name</label>
+                    <label class="layui-form-label">街道名称</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="streetName" lay-verify="required" placeholder="Enter street name" autocomplete="off" class="layui-input" required>
+                      <input type="text" name="streetName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" required>
                     </div>
                   </div>
                   <div class="layui-form-item">
-                    <label class="layui-form-label">Street Address</label>
+                    <label class="layui-form-label">街道地址</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="streetAddress" lay-verify="required" placeholder="Enter street address" autocomplete="off" class="layui-input"  required>
+                      <input type="text" name="streetAddress" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"  required>
                     </div>
                   </div>
                      <div class="layui-form-item">
-                    <label class="layui-form-label">City</label>
+                    <label class="layui-form-label">城市</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="city" lay-verify="required" placeholder="Enter city" autocomplete="off" class="layui-input" required>
+                      <input type="text" name="city" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" required>
                     </div>
                   </div>
                   <div class="layui-form-item">
-                    <label class="layui-form-label">Country</label>
+                    <label class="layui-form-label">国家</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="country" lay-verify="required" placeholder="Enter country" autocomplete="off" class="layui-input"  required>
+                      <input type="text" name="country" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"  required>
                     </div>
                   </div>
                      <div class="layui-form-item">
-                    <label class="layui-form-label">ZipCode</label>
+                    <label class="layui-form-label">邮编</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="zipCode" lay-verify="required" placeholder="Enter zip code" autocomplete="off" class="layui-input" required>
+                      <input type="text" name="zipCode" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" required>
                     </div>
                   </div>
                   <div class="layui-form-item">
-                    <label class="layui-form-label">Latitude</label>
+                    <label class="layui-form-label">纬度</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="latitude" lay-verify="required" placeholder="Enter latitude" autocomplete="off" class="layui-input"  required>
+                      <input type="text" name="latitude" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"  required>
                     </div>
                   </div>
 <div class="layui-form-item">
-                    <label class="layui-form-label">Longitude</label>
+                    <label class="layui-form-label">经度</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="longitude" lay-verify="required" placeholder="Enter longitude" autocomplete="off" class="layui-input"  required>
+                      <input type="text" name="longitude" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"  required>
                     </div>
                   </div>
- <button type="submit" class="layui-btn layui-btn-normal fr">Save</button>
+ <button type="submit" class="layui-btn layui-btn-normal fr">保存</button>
 </form>`
         });
         document.getElementsByTagName("form")[0].addEventListener("submit", function (e) {
@@ -203,7 +203,7 @@ function editAddressPost(){
         success: function (data) {
             if (data.code === 1){
                 layer.closeAll();
-                layer.msg("Address updated");
+                layer.msg("地址已编辑");
                 table.reload('test', {
   //url: '/api/table/search'
   //,where: {} //设定异步数据接口的额外参数
@@ -225,7 +225,7 @@ function deleteAddressPost() {
         success: function (data) {
             if (data.code === 1) {
                 layer.closeAll();
-                layer.msg("Address deleted");
+                layer.msg("地址已删除");
                 table.reload('test', { 
   //url: '/api/table/search'
   //,where: {} //设定异步数据接口的额外参数
@@ -260,7 +260,7 @@ function createAddressPost(){
         success: function (data) {
             if (data.code === 1){
                 layer.closeAll();
-                layer.msg("Address created");
+                layer.msg("地址已创建");
                 //$('#dg').datagrid('reload');
                  table.reload('test', {
   //url: '/api/table/search'
